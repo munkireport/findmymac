@@ -13,7 +13,7 @@ class findmymac_model extends \Model
         $this->rs['hostname'] = '';
 
         if ($serial) {
-            $this->retrieveOne('serial_number=?', $serial);
+            $this->retrieve_record($serial);
         }
         
         $this->serial = $serial;
