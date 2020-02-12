@@ -15,7 +15,7 @@ findmymac_manfiest_file="$DIR/cache/findmymac.txt"
 findmymac_raw_data="$DIR/cache/findmymac_raw_data.plist"
 
 #### FindMyMac Manifest Information ####
-fmmdata=$(/usr/sbin/nvram -x -p | /usr/bin/sed -n '/fmm-mobileme-token/,/<\/data>/p' | /usr/bin/grep -v 'data\|key' | /usr/bin/tr -d '\t' | /usr/bin/tr -d '\n')
+fmmdata=$(/usr/sbin/nvram -x -p | /usr/bin/awk '/fmm-mobileme-token/,/<\/data>/' | /usr/bin/awk '/<key>/ {f=0}; f && c==1; /<key>/ {f=1; c++}' | /usr/bin/grep -v 'data\|key' | /usr/bin/tr -d '\t' | /usr/bin/tr -d '\n')
 if [[ -z $fmmdata ]]
 then
     echo "Status = Disabled" > "$findmymac_manfiest_file"
