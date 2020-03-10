@@ -4,7 +4,8 @@ return [
     'client_tabs' => [
         'findmymac' => [
             'view' => 'findmymac_tab', 
-            'i18n' => 'findmymac.widget.title',
+            'i18n' => 'findmymac.title',
+            'badge' => 'findmymac-cnt',
         ],
     ],
     'listings' => [
