@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Remove findmymac_manfiest script
+# Remove findmymac.sh script
 rm -f "${MUNKIPATH}preflight.d/findmymac.sh"
 
-# Remove findmymacinfo.txt file
+# Remove findmymac.txt file
 rm -f "${MUNKIPATH}preflight.d/cache/findmymac.txt"
