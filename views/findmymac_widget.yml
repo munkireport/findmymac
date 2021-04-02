@@ -1,0 +1,15 @@
+type: button
+widget_id: findmymac-widget
+api_url: /module/findmymac/get_stats
+i18n_title: findmymac.widget.title
+listing_link: /show/listing/findmymac/findmymac
+icon: fa-sitemap
+buttons:
+  - label: Enabled
+    i18n_label: enabled
+    class: btn-danger
+    search_component: Enabled
+  - label: Disabled
+    i18n_label: disabled
+    class: btn-success
+    search_component: Disabled

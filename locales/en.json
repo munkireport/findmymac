@@ -5,7 +5,8 @@
         "title": "Find My Mac Report",
         "ownerdisplayname": "Owner Display Name",
         "personid": "iCloud Person ID",
-        "hostname": "iCloud Hostname"
+        "hostname": "iCloud Hostname",
+        "add_time": "Date Enabled"
     },
     "widget": {
         "title": "Find My Mac Status",

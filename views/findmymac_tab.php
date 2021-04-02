@@ -23,7 +23,7 @@ $(document).on('appReady', function(e, lang) {
       // Hide
       $('#findmymac-msg').text('');
       $('#findmymac-view').removeClass('hide');
-                  
+
         // Add data
         for (var key in data) {
             if (key == "serial_number" || key == "id" || key == ""){
@@ -34,7 +34,13 @@ $(document).on('appReady', function(e, lang) {
                 // Update the tab badge count
                 $('#findmymac-cnt').text(data.status);
             }
-            
+
+            if (key == "add_time"){
+                // Format date enabled
+                var date = new Date(data[key] * 1000);
+                data[key] = moment(date).format('llll');
+            }
+
             $('#findmymac-table tbody').append(
                 $('<tr/>').append(
                     $('<th/>').text(i18n.t("findmymac.listing."+key)),

@@ -11,11 +11,12 @@ class findmymac_model extends \Model
         $this->rs['email'] = '';
         $this->rs['personid'] = '';
         $this->rs['hostname'] = '';
+        $this->rs['add_time'] = 0;
 
         if ($serial) {
             $this->retrieve_record($serial);
         }
-        
+
         $this->serial = $serial;
     }
     
@@ -29,19 +30,20 @@ class findmymac_model extends \Model
      **/
     public function process($data)
     {
+        // Translate findmymac strings to db fields
+        $translate = array(
+            'Status = ' => 'status',
+            'OwnerDisplayName = ' => 'ownerdisplayname',
+            'Email = ' => 'email',
+            'personID = ' => 'personid',
+            'add_time = ' => 'add_time',
+            'hostname = ' => 'hostname');
 
-        // Translate network strings to db fields
-                $translate = array(
-                    'Status = ' => 'status',
-                    'OwnerDisplayName = ' => 'ownerdisplayname',
-                    'Email = ' => 'email',
-                    'personID = ' => 'personid',
-                    'hostname = ' => 'hostname');
-
-        //clear any previous data we had
+        // Clear any previous data we had
         foreach ($translate as $search => $field) {
             $this->$field = '';
         }
+
         // Parse data
         foreach (explode("\n", $data) as $line) {
         // Translate standard entries
@@ -53,8 +55,9 @@ class findmymac_model extends \Model
                     break;
                 }
             }
-        } //end foreach explode lines
+        } // End foreach explode lines
 
-                $this->save();
+        // Save the data
+        $this->save();
     }
 }

@@ -2,19 +2,12 @@
 
 # FindMyMac information
 
-# Skip manual check
-if [ "$1" = 'manualcheck' ]; then
-	echo 'Manual check: skipping'
-	exit 0
-fi
-
-# Create cache dir if it does not exist
+# Set cache dir variables
 DIR=$(dirname $0)
-mkdir -p "$DIR/cache"
 findmymac_manfiest_file="$DIR/cache/findmymac.txt"
 findmymac_raw_data="$DIR/cache/findmymac_raw_data.plist"
 
-#### FindMyMac Manifest Information ####
+#### FindMyMac Information ####
 fmmdata=$(/usr/sbin/nvram -x -p | /usr/bin/awk '/fmm-mobileme-token/,/<\/data>/' | /usr/bin/awk '/<key>/ {f=0}; f && c==1; /<key>/ {f=1; c++}' | /usr/bin/grep -v 'data\|key' | /usr/bin/tr -d '\t' | /usr/bin/tr -d '\n')
 if [[ -z $fmmdata ]]
 then
@@ -34,6 +27,9 @@ else
     
     hostname=$(/usr/libexec/PlistBuddy -c "Print dataclassProperties:com.apple.Dataclass.DeviceLocator:hostname" $findmymac_raw_data)
     echo "hostname = $hostname" >> "$findmymac_manfiest_file"
+
+    add_time=$(/usr/libexec/PlistBuddy -c "Print addTime" $findmymac_raw_data)
+    echo "add_time = $add_time" >> "$findmymac_manfiest_file"
 fi
 
 exit 0
