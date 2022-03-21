@@ -11,7 +11,7 @@ class findmymac_model extends \Model
         $this->rs['email'] = '';
         $this->rs['personid'] = '';
         $this->rs['hostname'] = '';
-        $this->rs['add_time'] = 0;
+        $this->rs['add_time'] = null;
 
         if ($serial) {
             $this->retrieve_record($serial);
@@ -41,7 +41,11 @@ class findmymac_model extends \Model
 
         // Clear any previous data we had
         foreach ($translate as $search => $field) {
-            $this->$field = '';
+            if ($field == "add_time"){
+                $this->$field = null;
+            } else {
+                $this->$field = '';
+            }
         }
 
         // Parse data
