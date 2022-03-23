@@ -54,8 +54,13 @@ class findmymac_model extends \Model
             foreach ($translate as $search => $field) {
                 if (strpos($line, $search) === 0) {
                     $value = substr($line, strlen($search));
-                        
-                    $this->$field = $value;
+                    
+                    // Set add time to null if it is blank
+                    if ($field == "add_time" && $value == ""){
+                        $this->$field = null;
+                    } else {
+                        $this->$field = $value;
+                    }
                     break;
                 }
             }
