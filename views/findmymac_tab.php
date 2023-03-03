@@ -35,7 +35,11 @@ $(document).on('appReady', function(e, lang) {
                 $('#findmymac-cnt').text(data.status);
             }
 
-            if (key == "add_time"){
+            if (data[key] == "" || data[key] == null){
+                continue;
+            }
+
+            if (key == "add_time" && data[key] > 1){
                 // Format date enabled
                 var date = new Date(data[key] * 1000);
                 data[key] = moment(date).format('llll');
@@ -52,5 +56,5 @@ $(document).on('appReady', function(e, lang) {
 
   });
 });
-  
+
 </script>
