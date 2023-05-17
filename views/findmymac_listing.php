@@ -1,9 +1,9 @@
 <?php $this->view('partials/head', array('scripts' => array('clients/client_list.js'))); ?>
 
-<div class="container">
-    <div class="row">
+<div class="container-fluid">
+    <div class="row pt-4">
         <div class="col-lg-12">
-            <h3><span data-i18n="findmymac.listing.title"></span> <span id="total-count" class='label label-primary'>…</span></h3>
+            <h3><span data-i18n="findmymac.listing.title"></span> <span id="total-count" class='badge badge-primary'>…</span></h3>
             <table class="table table-striped table-condensed table-bordered">
                 <thead>
                     <tr>
