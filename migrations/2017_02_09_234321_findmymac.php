@@ -32,7 +32,7 @@ class Findmymac extends Migration
             $table->string('personid')->nullable();
             $table->string('hostname')->nullable();
         });
-        
+
         if ($migrateData) {
             $capsule::unprepared("INSERT INTO 
                 $this->tableName
@@ -59,7 +59,7 @@ class Findmymac extends Migration
             $table->index('hostname');
         });
     }
-    
+
     public function down()
     {
         $capsule = new Capsule();

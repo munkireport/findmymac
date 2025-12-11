@@ -1,0 +1,16 @@
+i18n_title: findmymac.listing.title
+js_link: module/findmymac/js/findmymac
+table:
+  - column: machine.computer_name
+    i18n_header: listing.computername
+    formatter: clientDetail
+  - column: reportdata.serial_number
+    i18n_header: serial
+  - {i18n_header: username, column: reportdata.long_username}
+  - {i18n_header: type, column: machine.machine_name}
+  - {i18n_header: findmymac.listing.status, column: findmymac.status, formatter: formatFindmyStatus}
+  - {i18n_header: findmymac.listing.ownerdisplayname, column: findmymac.ownerdisplayname}
+  - {i18n_header: findmymac.listing.email, column: findmymac.email}
+  - {i18n_header: findmymac.listing.add_time, column: findmymac.add_time, formatter: formatFindmytimestampToMoment}
+  - {i18n_header: findmymac.listing.personid, column: findmymac.personid}
+  - {i18n_header: findmymac.listing.hostname, column: findmymac.hostname}

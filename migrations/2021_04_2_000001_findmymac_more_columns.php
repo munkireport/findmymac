@@ -16,7 +16,7 @@ class FindmymacMoreColumns extends Migration
             $table->index('add_time');
         });
      }
-    
+
     public function down()
     {
         $capsule = new Capsule();

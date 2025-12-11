@@ -21,7 +21,7 @@ class findmymac_controller extends Module_controller
    * @author clburlison
    **/
     public function get_stats()
-    {        
+    {
         $sql = "SELECT COUNT(CASE WHEN `status` = 'Enabled' THEN 1 END) AS 'Enabled',
                       COUNT(CASE WHEN `status` = 'Disabled' THEN 1 END) AS 'Disabled'
                       FROM findmymac
@@ -33,7 +33,7 @@ class findmymac_controller extends Module_controller
         foreach($queryobj->query($sql)[0] as $label => $value){
             $out[] = ['label' => $label, 'count' => $value];
         }
-        
+
         jsonView($out);
     }
 
