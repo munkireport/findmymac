@@ -103,7 +103,7 @@ def process_user_prefs(findmy_data):
             for service in account['Services']:
 
                 # Check if the user is signed into FindMy
-                if service["Name"] == "FIND_MY_MAC" and service["Enabled"] == True:
+                if service["Name"] == "FIND_MY_MAC" and "Enabled" in service and service["Enabled"] == True:
                     findmy_data['hostname'] = service['hostname']
 
                     findmy_data['email'] = account['AccountID']
