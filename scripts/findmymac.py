@@ -45,7 +45,6 @@ def get_findmy_legacy():
 
     return findmy_data
 
-
 def get_findmy():
 
     # Get FindMy data from on disk files
@@ -107,11 +106,28 @@ def process_user_prefs(findmy_data):
                     findmy_data['hostname'] = service['hostname']
 
                     findmy_data['email'] = account['AccountID']
-                    findmy_data['ownerdisplayname'] = account['DisplayName']
-                    findmy_data['personid'] = account['AccountDSID']
+                    if 'AccountDSID' in account:
+                        findmy_data['personid'] = account['AccountDSID']
+
+                    if 'DisplayName' in account:
+                        findmy_data['ownerdisplayname'] = account['DisplayName']
+                    else:
+                        findmy_data['ownerdisplayname'] = get_owner_display_name(account)
+
                     return findmy_data
 
     return findmy_data
+
+def get_owner_display_name(account):
+
+    for service in account['Services']:
+
+        # Check if the user is signed into MAIL_AND_NOTES or NOTES
+        if service["Name"] == "MAIL_AND_NOTES" or service["Name"] == "NOTES":
+            if "FullUserName" in service:
+                return service["FullUserName"]
+
+    return ""
 
 def getDarwinVersion():
     """Returns the Darwin version."""
